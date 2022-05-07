@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.database.DataSetObserver
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
 import android.transition.ChangeBounds
 import android.transition.TransitionManager
@@ -73,6 +74,10 @@ class PowerMenuButtonsAdapter(context: Context, var items: MutableList<PowerMenu
         }else{
             ContextCompat.getColor(context, R.color.background_secondary)
         }
+    }
+
+    private val getContext by lazy {
+        context
     }
 
     override fun getItemCount() = items.size
@@ -141,8 +146,10 @@ class PowerMenuButtonsAdapter(context: Context, var items: MutableList<PowerMenu
             }else{
                 monetPrimaryColor
             }
+            itemPowerMenuButtonText.setTextColor(ContextCompat.getColor(getContext,R.color.accent))
             itemPowerMenuButtonRoot.backgroundTintList = ColorStateList.valueOf(backgroundColor)
             itemPowerMenuButtonIcon.setImageResource(button.icon)
+            itemPowerMenuButtonIcon.setColorFilter(ContextCompat.getColor(getContext,R.color.primary_dark),PorterDuff.Mode.SRC_IN)
             itemPowerMenuButtonText.text = button.text
             itemPowerMenuButtonText.typeface = googleSansMedium
             itemPowerMenuButtonRoot.setOnClickListener {

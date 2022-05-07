@@ -3,8 +3,8 @@ package com.kieronquinn.app.classicpowermenu.ui.screens.powermenu.main
 import android.app.KeyguardManager
 import android.content.Context
 import android.content.Intent
+import android.nfc.NfcAdapter
 import android.telecom.TelecomManager
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.systemui.plugin.globalactions.wallet.WalletCardViewInfo
@@ -33,6 +33,7 @@ abstract class PowerMenuViewModel: ViewModel() {
     abstract fun onRebootRecoveryClicked()
     abstract fun onRebootBootloaderClicked()
     abstract fun onRestartSystemUIClicked()
+    abstract fun onNfcClicked(context: Context)
 
     abstract fun onEmergencyClicked(context: Context)
     abstract fun onLockdownClicked()
@@ -125,6 +126,17 @@ class PowerMenuViewModelImpl(context: Context, private val service: CPMServiceCo
                 it.restartSystemUi()
             }
             navigation.closePowerMenu()
+        }
+    }
+
+    override fun onNfcClicked(context: Context){
+        viewModelScope.launch {
+            service.runWithService {
+                val mNfcAdapter = NfcAdapter.getDefaultAdapter(context)
+                val enabled = mNfcAdapter.isEnabled
+                it.toggleNFC(!enabled)
+            }
+            //navigation.closePowerMenu()
         }
     }
 
@@ -243,7 +255,8 @@ class PowerMenuViewModelImpl(context: Context, private val service: CPMServiceCo
             PowerMenuButtonId.SCREENSHOT,
             R.drawable.ic_screenshot,
             context.getString(R.string.power_menu_button_screenshot),
-            ::onScreenshotClicked
+            ::onScreenshotClicked,
+            shouldShow = ::shouldShowPowerOption
         )
         PowerMenuButtonId.REBOOT_RECOVERY -> PowerMenuButton.Button(
             PowerMenuButtonId.REBOOT_RECOVERY,
@@ -266,10 +279,17 @@ class PowerMenuViewModelImpl(context: Context, private val service: CPMServiceCo
             ::onRestartSystemUIClicked,
             shouldShow = ::shouldShowPowerOption
         )
+        PowerMenuButtonId.NFC -> PowerMenuButton.Button(
+            PowerMenuButtonId.NFC,
+            R.drawable.ic_nfc,
+            context.getString(R.string.power_menu_button_nfc),
+            onClick = { onNfcClicked(context) },
+            shouldShow = ::shouldShowPowerOption
+        )
     }
 
     private fun shouldShowPowerOption(): Boolean {
-        return !isLocked() || !settings.powerOptionsHideWhenLocked
+        return !isLocked() //|| !settings.powerOptionsHideWhenLocked
     }
 
     private fun isLocked(): Boolean {

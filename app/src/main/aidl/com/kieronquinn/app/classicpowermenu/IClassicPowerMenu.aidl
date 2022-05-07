@@ -26,6 +26,7 @@ interface IClassicPowerMenu {
     void reboot(boolean safeMode);
     void rebootWithReason(String reason);
     void restartSystemUi();
+    void toggleNFC(boolean on);
 
     //Screenshot button
     void takeScreenshot();

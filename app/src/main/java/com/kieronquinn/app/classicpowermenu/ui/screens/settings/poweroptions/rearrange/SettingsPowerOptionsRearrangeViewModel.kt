@@ -85,6 +85,12 @@ class SettingsPowerOptionsRearrangeViewModelImpl(private val settings: Settings,
             context.getString(R.string.power_menu_button_restart_systemui),
             this::emptyClick
         )
+        PowerMenuButtonId.NFC -> PowerMenuButton.Button(
+            PowerMenuButtonId.NFC,
+            R.drawable.ic_nfc,
+            context.getString(R.string.power_menu_button_nfc),
+            this::emptyClick
+        )
     }
 
     override fun onBackPressed() {

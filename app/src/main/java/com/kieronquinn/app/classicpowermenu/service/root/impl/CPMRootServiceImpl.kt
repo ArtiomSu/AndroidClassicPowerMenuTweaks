@@ -143,6 +143,14 @@ class CPMRootServiceImpl: IClassicPowerMenu.Stub() {
         Runtime.getRuntime().exec("pkill systemui")
     }
 
+    override fun toggleNFC(on: Boolean){
+        if(on){
+            Runtime.getRuntime().exec("svc nfc enable")
+        }else{
+            Runtime.getRuntime().exec("svc nfc disable")
+        }
+    }
+
     override fun takeScreenshot() {
         //Wait for app to close
         Handler(Looper.getMainLooper()).postDelayed({

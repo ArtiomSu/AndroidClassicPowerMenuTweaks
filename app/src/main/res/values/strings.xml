@@ -34,6 +34,7 @@
     <string name="power_menu_button_emergency">Emergency</string>
     <string name="power_menu_button_lockdown">Lockdown</string>
     <string name="power_menu_button_screenshot">Screenshot</string>
+    <string name="power_menu_button_nfc">Toggle NFC</string>
 
     <string name="wallet_loyalty_instructions">• Tap to show</string>
     <string name="content_creator_mode_warning">Content Creator Mode enabled</string>

@@ -2,8 +2,8 @@
 <resources>
     <color name="primary">#32302C</color>
     <color name="power_button_emergency">#D32F2F</color>
-    <color name="ripple_material">#40ffffff</color>
+    <color name="ripple_material">#45FF0000</color>
     <color name="background">@color/black</color>
-    <color name="background_secondary">#616161</color>
+    <color name="background_secondary">#65000000</color>
     <color name="splash_background">@color/black</color>
 </resources>

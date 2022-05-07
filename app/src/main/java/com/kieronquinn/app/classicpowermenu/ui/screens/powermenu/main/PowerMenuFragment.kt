@@ -73,8 +73,8 @@ class PowerMenuFragment :
 
     private fun getItems(): List<PowerMenuContentItem> {
         return ArrayList<PowerMenuContentItem>().apply {
-            if(viewModel.showQuickAccessWallet) add(PowerMenuContentItem.Cards)
             if(viewModel.showControls) add(PowerMenuContentItem.Controls)
+            if(viewModel.showQuickAccessWallet && !isLocked()) add(PowerMenuContentItem.Cards)
         }
     }
 
@@ -142,7 +142,7 @@ class PowerMenuFragment :
             ColorDrawable(
                 ColorUtils.setAlphaComponent(
                     monet.getBackgroundColor(context, true),
-                    128
+                    0
                 )
             )
         }
@@ -192,7 +192,7 @@ class PowerMenuFragment :
             when(it){
                 is AppBarBackgroundState.AnimateToVisible -> appBarBackgroundAnimation = binding.powerMenuAppbar.background.animateToVisible()
                 is AppBarBackgroundState.AnimateToInvisible -> appBarBackgroundAnimation = binding.powerMenuAppbar.background.animateToInvisible()
-                is AppBarBackgroundState.Alpha -> binding.powerMenuAppbar.background.alpha = ((it.alpha) * 255).safeRoundToInt()
+                is AppBarBackgroundState.Alpha -> binding.powerMenuAppbar.background.alpha = 0 //((it.alpha) * 255).safeRoundToInt()
             }
         }
     }
@@ -246,6 +246,10 @@ class PowerMenuFragment :
         data class Alpha(val alpha: Float): AppBarBackgroundState()
         object AnimateToInvisible: AppBarBackgroundState()
         object AnimateToVisible: AppBarBackgroundState()
+    }
+
+    private fun isLocked(): Boolean {
+        return keyguardManager.isDeviceLocked
     }
 
 

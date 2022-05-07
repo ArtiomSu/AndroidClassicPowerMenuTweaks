@@ -48,13 +48,13 @@ class SettingsImpl(context: Context): Settings() {
     companion object {
 
         private const val KEY_HAS_SEEN_SETUP = "has_seen_setup"
-        private const val DEFAULT_HAS_SEEN_SETUP = false
+        private const val DEFAULT_HAS_SEEN_SETUP = true
 
         private const val KEY_ENABLED = "enabled"
         private const val DEFAULT_ENABLED = true
 
         private const val KEY_USE_MONET = "use_monet"
-        private const val DEFAULT_USE_MONET = true
+        private const val DEFAULT_USE_MONET = false
 
         private const val KEY_MONET_COLOR = "monet_color"
 
@@ -63,7 +63,7 @@ class SettingsImpl(context: Context): Settings() {
 
         //Power Options
         private const val KEY_POWER_OPTIONS_HIDE_WHEN_LOCKED = "power_options_hide_when_locked"
-        private const val DEFAULT_POWER_OPTIONS_HIDE_WHEN_LOCKED = false
+        private const val DEFAULT_POWER_OPTIONS_HIDE_WHEN_LOCKED = true
 
         private const val KEY_POWER_OPTIONS_OPEN_COLLAPSED = "power_options_open_collapsed"
         private const val DEFAULT_POWER_OPTIONS_OPEN_COLLAPSED = false
@@ -72,7 +72,7 @@ class SettingsImpl(context: Context): Settings() {
         private val DEFAULT_POWER_MENU_BUTTONS = PowerMenuButtonId.DEFAULT
 
         private const val KEY_ALLOW_ROTATION = "allow_rotation"
-        private const val DEFAULT_ALLOW_ROTATION = true
+        private const val DEFAULT_ALLOW_ROTATION = false
 
         private const val KEY_ALLOW_FULL_ROTATION = "allow_full_rotation"
         private const val DEFAULT_ALLOW_FULL_ROTATION = false
