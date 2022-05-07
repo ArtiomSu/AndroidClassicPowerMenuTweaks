@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kieronquinn.app.classicpowermenu.BuildConfig
 import com.kieronquinn.app.classicpowermenu.R
-import com.kieronquinn.app.classicpowermenu.components.github.UpdateChecker
+//import com.kieronquinn.app.classicpowermenu.components.github.UpdateChecker
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -27,7 +27,7 @@ abstract class UpdateDownloadBottomSheetViewModel: ViewModel() {
 
     abstract val downloadState: Flow<State>
 
-    abstract fun startDownload(context: Context, update: UpdateChecker.Update)
+    //abstract fun startDownload(context: Context, update: UpdateChecker.Update)
     abstract fun cancelDownload(context: Context)
     abstract fun openPackageInstaller(context: Context, uri: Uri)
 
@@ -52,11 +52,11 @@ class UpdateDownloadBottomSheetViewModelImpl(context: Context): UpdateDownloadBo
 
     override val downloadState = _downloadState.asStateFlow()
 
-    override fun startDownload(context: Context, update: UpdateChecker.Update) {
-        if(_downloadState.value is State.Idle) {
-            downloadUpdate(context, update.assetUrl, update.assetName)
-        }
-    }
+//    override fun startDownload(context: Context, update: UpdateChecker.Update) {
+//        if(_downloadState.value is State.Idle) {
+//            downloadUpdate(context, update.assetUrl, update.assetName)
+//        }
+//    }
 
     private val downloadStateReceiver = object: BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent?) {

@@ -3,6 +3,8 @@ package com.kieronquinn.app.classicpowermenu.ui.screens.powermenu.main
 import android.app.KeyguardManager
 import android.content.Context
 import android.content.Intent
+import android.hardware.camera2.CameraAccessException
+import android.hardware.camera2.CameraManager
 import android.nfc.NfcAdapter
 import android.telecom.TelecomManager
 import androidx.lifecycle.ViewModel
@@ -34,6 +36,7 @@ abstract class PowerMenuViewModel: ViewModel() {
     abstract fun onRebootBootloaderClicked()
     abstract fun onRestartSystemUIClicked()
     abstract fun onNfcClicked(context: Context)
+    abstract fun onFlashLightClicked(context: Context)
 
     abstract fun onEmergencyClicked(context: Context)
     abstract fun onLockdownClicked()
@@ -61,6 +64,8 @@ class PowerMenuViewModelImpl(context: Context, private val service: CPMServiceCo
     private val keyguardManager by lazy {
         context.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
     }
+
+    private var flashLightStatus: Boolean = false
 
     override val powerOptionsHideWhenLocked by settings::powerOptionsHideWhenLocked
     override val powerOptionsOpenCollapsed by settings::powerOptionsOpenCollapsed
@@ -137,6 +142,28 @@ class PowerMenuViewModelImpl(context: Context, private val service: CPMServiceCo
                 it.toggleNFC(!enabled)
             }
             //navigation.closePowerMenu()
+        }
+    }
+
+    override fun onFlashLightClicked(context: Context){
+        viewModelScope.launch {
+            service.runWithService {
+                val cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
+                val cameraId = cameraManager.cameraIdList[0]
+                if (!flashLightStatus) {
+                    try {
+                        cameraManager.setTorchMode(cameraId, true)
+                        flashLightStatus = true
+                    } catch (e: CameraAccessException) {
+                    }
+                } else {
+                    try {
+                        cameraManager.setTorchMode(cameraId, false)
+                        flashLightStatus = false
+                    } catch (e: CameraAccessException) {
+                    }
+                }
+            }
         }
     }
 
@@ -284,6 +311,13 @@ class PowerMenuViewModelImpl(context: Context, private val service: CPMServiceCo
             R.drawable.ic_nfc,
             context.getString(R.string.power_menu_button_nfc),
             onClick = { onNfcClicked(context) },
+            shouldShow = ::shouldShowPowerOption
+        )
+        PowerMenuButtonId.FLASH_LIGHT -> PowerMenuButton.Button(
+            PowerMenuButtonId.FLASH_LIGHT,
+            R.drawable.ic_flashlight,
+            context.getString(R.string.power_menu_button_flashlight),
+            onClick = { onFlashLightClicked(context) },
             shouldShow = ::shouldShowPowerOption
         )
     }

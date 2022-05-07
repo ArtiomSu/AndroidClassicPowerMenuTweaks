@@ -32,7 +32,7 @@ import com.android.systemui.util.extensions.ControlsActivityStarter
 import com.android.systemui.util.extensions.ServiceRunner
 import com.kieronquinn.app.classicpowermenu.components.blur.BlurProvider
 import com.kieronquinn.app.classicpowermenu.components.controls.ControlsActivityStarterImpl
-import com.kieronquinn.app.classicpowermenu.components.github.UpdateChecker
+//import com.kieronquinn.app.classicpowermenu.components.github.UpdateChecker
 import com.kieronquinn.app.classicpowermenu.components.monet.MonetColorProvider
 import com.kieronquinn.app.classicpowermenu.components.navigation.*
 import com.kieronquinn.app.classicpowermenu.components.quickaccesswallet.WalletActivityStarterImpl
@@ -122,7 +122,7 @@ class ClassicPowerMenu: LifecycleApplication() {
             single<ContainerNavigation> { ContainerNavigationImpl() }
             single<AppNavigation> { AppNavigationImpl() }
             single<Settings> { SettingsImpl(get()) }
-            single { UpdateChecker() }
+            //single { UpdateChecker() }
         }
     }
 
@@ -140,7 +140,8 @@ class ClassicPowerMenu: LifecycleApplication() {
 
     private val viewModelModule by lazy {
         module {
-            viewModel<MainActivityViewModel> { MainActivityViewModelImpl(get(), get()) }
+            viewModel<MainActivityViewModel> { MainActivityViewModelImpl() }
+            //viewModel<MainActivityViewModel> { MainActivityViewModelImpl(get(), get()) }
             viewModel<DecisionViewModel> { DecisionViewModelImpl(get(), get()) }
             viewModel<PowerMenuViewModel> { PowerMenuViewModelImpl(get(), get(), get(), get(), get(), get()) }
             viewModel<PowerMenuActivityViewModel> { PowerMenuActivityViewModelImpl(get(), get(), get()) }

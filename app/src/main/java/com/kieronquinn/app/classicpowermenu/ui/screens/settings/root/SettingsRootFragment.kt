@@ -33,7 +33,7 @@ class SettingsRootFragment: BoundFragment<FragmentSettingsRootBinding>(FragmentS
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupNavigation()
-        setupUpdateChecker()
+        //setupUpdateChecker()
     }
 
     private fun setupNavigation() = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
@@ -52,14 +52,14 @@ class SettingsRootFragment: BoundFragment<FragmentSettingsRootBinding>(FragmentS
         }
     }
 
-    private fun setupUpdateChecker(){
-        lifecycleScope.launchWhenResumed {
-            sharedViewModel.update.collect {
-                if(it != null) {
-                    navigation.navigate(SettingsRootCheckFragmentDirections.actionGlobalUpdateAvailableBottomSheetFragment())
-                }
-            }
-        }
-    }
+//    private fun setupUpdateChecker(){
+//        lifecycleScope.launchWhenResumed {
+//            sharedViewModel.update.collect {
+//                if(it != null) {
+//                    navigation.navigate(SettingsRootCheckFragmentDirections.actionGlobalUpdateAvailableBottomSheetFragment())
+//                }
+//            }
+//        }
+//    }
 
 }

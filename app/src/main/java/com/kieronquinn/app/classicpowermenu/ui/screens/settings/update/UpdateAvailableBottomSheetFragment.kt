@@ -17,9 +17,9 @@ class UpdateAvailableBottomSheetFragment: BaseBottomSheetFragment<FragmentUpdate
     private val sharedViewModel by sharedViewModel<MainActivityViewModel>()
     private val viewModel by viewModel<UpdateAvailableBottomSheetViewModel>()
 
-    private val update by lazy {
-        sharedViewModel.getAvailableUpdate()
-    }
+//    private val update by lazy {
+//        sharedViewModel.getAvailableUpdate()
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,23 +28,24 @@ class UpdateAvailableBottomSheetFragment: BaseBottomSheetFragment<FragmentUpdate
             val bottomInset = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
             view.updatePadding(bottom = bottomInset + bottomPadding)
         }
-        binding.updateBottomSheetContent.text = update?.changelog
-        val accent = monet.getAccentColor(requireContext())
-        binding.updateBottomSheetPositive.setTextColor(accent)
-        binding.updateBottomSheetNegative.setTextColor(accent)
-        binding.updateBottomSheetNeutral.setTextColor(accent)
-        binding.updateBottomSheetPositive.setOnClickListener {
-            viewModel.onDownloadClicked()
-        }
-        binding.updateBottomSheetNegative.setOnClickListener {
-            sharedViewModel.clearUpdate()
-            viewModel.onDismissClicked()
-        }
-        binding.updateBottomSheetNeutral.setOnClickListener {
-            update?.let {
-                viewModel.onOpenInGitHubClicked(it)
-            }
-        }
+        binding.updateBottomSheetContent.text = "updates are disabled in this tweaks mod"
+//        binding.updateBottomSheetContent.text = update?.changelog
+//        val accent = monet.getAccentColor(requireContext())
+//        binding.updateBottomSheetPositive.setTextColor(accent)
+//        binding.updateBottomSheetNegative.setTextColor(accent)
+//        binding.updateBottomSheetNeutral.setTextColor(accent)
+//        binding.updateBottomSheetPositive.setOnClickListener {
+//            viewModel.onDownloadClicked()
+//        }
+//        binding.updateBottomSheetNegative.setOnClickListener {
+//            sharedViewModel.clearUpdate()
+//            viewModel.onDismissClicked()
+//        }
+//        binding.updateBottomSheetNeutral.setOnClickListener {
+//            update?.let {
+//                viewModel.onOpenInGitHubClicked(it)
+//            }
+//        }
     }
 
 }

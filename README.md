@@ -6,7 +6,7 @@ This fork is basically just some changes that I personaly wanted to make to the 
 
 ## My Tweaks
 1. Google Pay cards are always blurred.
-2. Add NFC toggle to power menu settings
+2. Add NFC toggle, Torch Toggle to power menu settings
 3. Power Menu is always hidden on lockscreen.
 4. Google Wallet is always hidden on lockscreen.
 5. Non Monet colours changed to be dark, transparent and red. Red outline for cards. All icons etc. See screenshots bellow (doesn't look good with monet enabled).

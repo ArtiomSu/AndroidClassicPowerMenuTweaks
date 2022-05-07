@@ -91,6 +91,12 @@ class SettingsPowerOptionsRearrangeViewModelImpl(private val settings: Settings,
             context.getString(R.string.power_menu_button_nfc),
             this::emptyClick
         )
+        PowerMenuButtonId.FLASH_LIGHT -> PowerMenuButton.Button(
+            PowerMenuButtonId.FLASH_LIGHT,
+            R.drawable.ic_flashlight,
+            context.getString(R.string.power_menu_button_flashlight),
+            this::emptyClick
+        )
     }
 
     override fun onBackPressed() {
