@@ -39,9 +39,9 @@ Classic Power Menu is a Power Menu Replacement for Android 11+, with the main ai
     - An optional Xposed module is included, which can react quicker than the Accessibility Service
 
 ## My Tweaks Screenshots
-![screenshot 1](https://github.com/ArtiomSu/AndroidClassicPowerMenuTweaks/blob/master/.screenshots/1.png) ![screenshot 2](https://github.com/ArtiomSu/AndroidClassicPowerMenuTweaks/blob/master/.screenshots/2.png) ![screenshot 3](https://github.com/ArtiomSu/AndroidClassicPowerMenuTweaks/blob/master/.screenshots/3.png)
+![screenshot 1](https://github.com/ArtiomSu/AndroidClassicPowerMenuTweaks/blob/tweaks/.screenshots/1.png) ![screenshot 2](https://github.com/ArtiomSu/AndroidClassicPowerMenuTweaks/blob/tweaks/.screenshots/2.png) ![screenshot 3](https://github.com/ArtiomSu/AndroidClassicPowerMenuTweaks/blob/tweaks/.screenshots/3.png)
 ### Lock Screen
-![screenshot 4](https://github.com/ArtiomSu/AndroidClassicPowerMenuTweaks/blob/master/.screenshots/4.png)
+![screenshot 4](https://github.com/ArtiomSu/AndroidClassicPowerMenuTweaks/blob/tweaks/.screenshots/4.png)
 ## Original Project Screenshots
 
 ![Classic Power Menu](https://i.imgur.com/rhm4bqvl.png) ![Settings](https://i.imgur.com/rAG0htEl.png)
