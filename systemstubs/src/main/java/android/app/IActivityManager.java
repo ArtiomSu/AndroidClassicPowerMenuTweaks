@@ -8,10 +8,8 @@ import android.os.IBinder;
 
 public interface IActivityManager extends android.os.IInterface {
 
-    abstract class Stub extends android.os.Binder implements android.app.IServiceConnection
-    {
-        public static IActivityManager asInterface(android.os.IBinder obj)
-        {
+    abstract class Stub extends android.os.Binder implements android.app.IServiceConnection {
+        public static IActivityManager asInterface(android.os.IBinder obj) {
             throw new RuntimeException("Stub!");
         }
     }
@@ -70,6 +68,25 @@ public interface IActivityManager extends android.os.IInterface {
             Bundle map,
             String[] requiredPermissions,
             String[] excludePermissions,
+            int appOp,
+            Bundle options,
+            boolean serialized,
+            boolean sticky,
+            int userId);
+
+    //Android 13+
+    int broadcastIntentWithFeature(
+            IApplicationThread caller,
+            String callingFeatureId,
+            Intent intent,
+            String resolvedType,
+            IIntentReceiver resultTo,
+            int resultCode,
+            String resultData,
+            Bundle map,
+            String[] requiredPermissions,
+            String[] excludePermissions,
+            String[] excludePackages,
             int appOp,
             Bundle options,
             boolean serialized,

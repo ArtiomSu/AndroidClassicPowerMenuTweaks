@@ -295,6 +295,7 @@ class PowerMenuButtonsAdapter(context: Context, var items: MutableList<PowerMenu
                     notifyItemChanged(itemIndex)
                 }
             }
+            else -> {}
         }
     }
 
